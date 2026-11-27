@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <title>CyberShield — Digital Safety Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="CyberShield home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2l8 3v5c0 5.2-3.4 9.8-8 11.3C7.4 19.8 4 15.2 4 10V5l8-3z"/><path d="M9.2 12l1.8 1.8 4-4"/></svg>
+      </span>
+      <span>CYBER<span>SHIELD</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="active" href="#learn">Learn</a>
+      <a href="#dashboard">Progress</a>
+      <a href="#analyzer">Analyze</a>
+      <a href="#urlChecker">Check URL</a>
+      <a href="#detect">Threat guide</a>
+      <a href="#respond">Respond</a>
+      <a href="#resources">Resources</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
+      <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"/></svg>
+      <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+    </button>
+    <span class="visually-hidden" id="themeStatus" role="status" aria-live="polite"></span>
+    <button class="emergency-button" id="emergencyButton">
+      <span class="pulse-dot"></span>
+      Emergency help
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="learn">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="eyebrow"><span></span> Digital safety starts here</div>
+          <h1>Stay alert.<br><em>Stay protected.</em></h1>
+          <p>Learn to recognize scams, protect your devices, and act quickly if something goes wrong.</p>
+          <div class="hero-actions">
+            <button class="primary-button" id="startAssessment">Start safety check <span>→</span></button>
+            <button class="text-button" id="watchGuide"><span class="play">▶</span> Watch 60-sec guide</button>
+          </div>
+        </div>
+        <div class="threat-orbit" aria-label="Cyber security threat areas">
+          <div class="orbit-ring ring-one"></div>
+          <div class="orbit-ring ring-two"></div>
+          <div class="orbit-ring ring-three"></div>
+          <div class="shield-core">
+            <svg viewBox="0 0 64 64"><path d="M32 5l21 8v13c0 14-8.7 25.4-21 30C19.7 51.4 11 40 11 26V13l21-8z"/><path d="M23 32l6 6 13-14"/></svg>
+          </div>
+          <button class="threat-card card-one" data-topic="phishing">
+            <span class="threat-icon mail-icon">✉</span>
+            <span><b>Phishing</b><small>Email &amp; SMS scams</small></span>
+          </button>
+          <button class="threat-card card-two" data-topic="arrest">
+            <span class="threat-icon alert-icon">!</span>
+            <span><b>Digital arrest</b><small>Fake authority threats</small></span>
+          </button>
+          <button class="threat-card card-three" data-topic="apps">
+            <span class="threat-icon app-icon">▣</span>
+            <span><b>Malicious apps</b><small>Dangerous downloads</small></span>
+          </button>
+        </div>
+      </div>
+      <div class="threat-strip">
+        <div class="live-label"><span></span> LIVE THREAT ALERTS</div>
+        <div class="ticker">
+          <span><i>01</i> Fake bank KYC links are increasing</span>
+          <span><i>02</i> Video-call “arrest” scams reported</span>
+          <span><i>03</i> Verify apps before installing</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="analyzer-section" id="analyzer">
+      <div class="analyzer-heading">
+        <div>
+          <div class="eyebrow dark"><span></span> Private, on-device check</div>
+          <h2>Not sure about a message?</h2>
+        </div>
+        <p>Check for common phishing signals before you reply, click, or share information. Your message stays in this browser.</p>
+      </div>
+      <div class="analyzer-panel">
+        <label class="analyzer-label" for="messageInput">Paste a text, email, or WhatsApp message</label>
+        <textarea id="messageInput" maxlength="5000" placeholder="Paste the message here — you can remove personal details first." aria-describedby="privacyNote"></textarea>
+        <div class="input-meta">
+          <span id="privacyNote">Analyzed locally. Messages are not sent or stored.</span>
+          <span id="characterCount">0 / 5000</span>
+        </div>
+        <div class="sample-row">
+          <span>Try a sample:</span>
+          <button type="button" class="sample-button" data-sample="bank">Bank alert</button>
+          <button type="button" class="sample-button" data-sample="prize">Prize offer</button>
+          <button type="button" class="sample-button" data-sample="normal">Routine message</button>
+        </div>
+        <div class="analyzer-actions">
+          <button type="button" class="primary-button" id="analyzeMessage">Analyze message <span>→</span></button>
+          <button type="button" class="clear-button" id="clearMessage">Clear</button>
+        </div>
+        <p class="analyzer-error" id="analyzerError" role="alert" hidden>Please paste a message before analyzing.</p>
+        <div class="analysis-result" id="analysisResult" aria-live="polite" hidden>
+          <div class="result-header">
+            <div>
+              <span class="result-overline">RULE-BASED CHECK</span>
+              <h3 id="riskTitle"></h3>
+            </div>
+            <span class="risk-badge" id="riskBadge"></span>
+          </div>
+          <p class="result-disclaimer">This check looks for common wording patterns. It cannot confirm whether a sender or link is genuine, and may miss new scam tactics.</p>
+          <div class="result-columns">
+            <div>
+              <h4>Warning signs found</h4>
+              <ul id="warningList" class="warning-list"></ul>
+            </div>
+            <div>
+              <h4>What to do</h4>
+              <ul id="safetyTips" class="safety-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="url-checker-section" id="urlChecker">
+      <div class="analyzer-heading">
+        <div>
+          <div class="eyebrow dark"><span></span> Inspect without opening</div>
+          <h2>Suspicious URL checker</h2>
+        </div>
+        <p>Look for common URL warning patterns locally in your browser. This checker does not visit the URL or check its reputation.</p>
+      </div>
+      <div class="analyzer-panel">
+        <label class="analyzer-label" for="urlInput">Enter a website address</label>
+        <input id="urlInput" class="url-input" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://example.com/path" aria-describedby="urlPrivacyNote">
+        <div class="input-meta">
+          <span id="urlPrivacyNote">Checked locally. The address is not opened, sent, or stored.</span>
+          <span>http:// or https://</span>
+        </div>
+        <div class="url-examples">
+          <div class="url-example-group">
+            <span>Safe-format example (not a safety guarantee):</span>
+            <button type="button" class="url-sample safe-sample" data-url-sample="https://www.example.com/help">https://www.example.com/help</button>
+          </div>
+          <div class="url-example-group">
+            <span>Suspicious-looking examples (never opened):</span>
+            <button type="button" class="url-sample" data-url-sample="http://192.0.2.10/account">IP address</button>
+            <button type="button" class="url-sample" data-url-sample="http://bit.ly/reward">URL shortener</button>
+            <button type="button" class="url-sample" data-url-sample="https://secure.example.com.evil.invalid/verify">Misleading subdomain</button>
+          </div>
+        </div>
+        <div class="analyzer-actions">
+          <button type="button" class="primary-button" id="checkUrl">Check URL <span>→</span></button>
+          <button type="button" class="clear-button" id="resetUrl">Reset</button>
+        </div>
+        <p class="analyzer-error" id="urlError" role="alert" hidden>Enter a valid website address using a domain name or IP address.</p>
+        <div class="analysis-result" id="urlResult" aria-live="polite" hidden>
+          <div class="result-header">
+            <div>
+              <span class="result-overline">TRANSPARENT PATTERN CHECK</span>
+              <h3 id="urlRiskTitle"></h3>
+            </div>
+            <span class="risk-badge" id="urlRiskBadge"></span>
+          </div>
+          <p class="result-disclaimer">These are educational heuristics only—not a reputation, malware, or ownership check. No warnings found does not mean a URL is safe.</p>
+          <h4 class="url-indicators-heading">Warning indicators and why they matter</h4>
+          <ul id="urlWarningList" class="url-warning-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="learning-section" id="detect">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow dark"><span></span> Know the warning signs</div>
+          <h2>Identify the threat</h2>
+        </div>
+        <p>Real-time tactics used by scammers. Learn what to look for before you respond.</p>
+      </div>
+
+      <div class="topic-grid">
+        <article class="topic-card" id="phishingTopic" data-topic="phishing">
+          <div class="topic-preview phishing-preview">
+            <div class="mini-browser"><i></i><i></i><i></i><span>secure-bank-verification.com</span></div>
+            <div class="email-card">
+              <b>Your account will be blocked</b>
+              <p>Verify identity within 30 minutes</p>
+              <span>VERIFY NOW</span>
+            </div>
+            <div class="warning-tag">SUSPICIOUS LINK</div>
+          </div>
+          <div class="topic-body">
+            <span class="topic-number">01</span>
+            <h3>Phishing attacks</h3>
+            <p>Fake messages that trick you into sharing passwords, OTPs, or financial details.</p>
+            <button class="learn-button" data-topic="phishing">Learn to spot it <span>→</span></button>
+          </div>
+        </article>
+
+        <article class="topic-card" id="arrestTopic" data-topic="arrest">
+          <div class="topic-preview arrest-preview">
+            <div class="phone-frame">
+              <div class="phone-top">Incoming call</div>
+              <div class="badge">CBI</div>
+              <b>Cyber Investigation</b>
+              <small>Unknown number</small>
+            </div>
+            <div class="warning-tag">URGENT THREAT</div>
+          </div>
+          <div class="topic-body">
+            <span class="topic-number">02</span>
+            <h3>Digital arrest scams</h3>
+            <p>Callers pose as police or agencies and demand secrecy or immediate payment.</p>
+            <button class="learn-button" data-topic="arrest">Learn to spot it <span>→</span></button>
+          </div>
+        </article>
+
+        <article class="topic-card" id="appsTopic" data-topic="apps">
+          <div class="topic-preview apps-preview">
+            <div class="app-grid">
+              <div class="app-icon">₹</div>
+              <div class="app-icon">◉</div>
+              <div class="app-icon">▰</div>
+              <div class="app-icon">A</div>
+            </div>
+            <div class="permission-box">
+              <b>App permissions</b>
+              <span>Contacts <i>ON</i></span>
+              <span>Camera <i>ON</i></span>
+              <span>Accessibility <i>ON</i></span>
+            </div>
+          </div>
+          <div class="topic-body">
+            <span class="topic-number">03</span>
+            <h3>Malicious applications</h3>
+            <p>Trojan, fake, or cloned apps designed to steal data or control your device.</p>
+            <button class="learn-button" data-topic="apps">Learn to spot it <span>→</span></button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="check-section" id="respond">
+      <div class="check-copy">
+        <div class="eyebrow"><span></span> Interactive safety check</div>
+        <h2>Choose a safety topic</h2>
+        <p>Take a separate, focused check for phishing, malicious applications, or digital arrest scams.</p>
+      </div>
+      <button class="assessment-card" id="assessmentCard">
+        <span class="assessment-icon">!</span>
+        <span>
+          <b>Quick risk check</b>
+          <small>Personalized safety guidance</small>
+        </span>
+        <span class="assessment-arrow">→</span>
+      </button>
+    </section>
+
+    <section class="dashboard-section" id="dashboard">
+      <div class="dashboard-heading">
+        <div>
+          <div class="eyebrow dark"><span></span> Your learning journey</div>
+          <h2>Cyber safety dashboard</h2>
+        </div>
+        <p>Progress is saved in this browser only. Messages and passwords are never part of your learning record.</p>
+      </div>
+
+      <p class="dashboard-welcome" id="dashboardWelcome">
+        Welcome! Your learning journey starts here. Explore a safety guide or complete a topic check to begin tracking your progress.
+      </p>
+
+      <div class="dashboard-stats">
+        <article class="stat-card">
+          <span class="stat-label">QUIZZES COMPLETED</span>
+          <strong id="completedQuizCount">0</strong>
+          <span class="stat-note">Across all safety topics</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">HIGHEST QUIZ SCORE</span>
+          <strong id="highestQuizScore">—</strong>
+          <span class="stat-note">Risk indicators; higher means more warning signs</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">TOPICS EXPLORED</span>
+          <strong id="exploredTopicCount">0 / 3</strong>
+          <span class="stat-note">Phishing, apps, and digital arrest</span>
+        </article>
+      </div>
+
+      <div class="dashboard-panels">
+        <section class="dashboard-panel" aria-labelledby="progressTitle">
+          <div class="panel-heading">
+            <h3 id="progressTitle">Learning progress</h3>
+            <strong id="overallProgressLabel">0%</strong>
+          </div>
+          <div class="overall-progress" role="progressbar" aria-label="Overall topic learning progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span id="overallProgressBar"></span>
+          </div>
+          <div class="topic-progress-list">
+            <div class="topic-progress-item" data-progress-topic="phishing">
+              <div><a href="#phishingTopic">Phishing attacks</a><span id="phishingProgressLabel">Not started</span></div>
+              <div class="topic-progress-track"><span id="phishingProgressBar"></span></div>
+            </div>
+            <div class="topic-progress-item" data-progress-topic="apps">
+              <div><a href="#appsTopic">Malicious applications</a><span id="appsProgressLabel">Not started</span></div>
+              <div class="topic-progress-track"><span id="appsProgressBar"></span></div>
+            </div>
+            <div class="topic-progress-item" data-progress-topic="arrest">
+              <div><a href="#arrestTopic">Digital arrest scams</a><span id="arrestProgressLabel">Not started</span></div>
+              <div class="topic-progress-track"><span id="arrestProgressBar"></span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="dashboard-panel achievements-panel" aria-labelledby="achievementsTitle">
+          <div class="panel-heading">
+            <h3 id="achievementsTitle">Achievements</h3>
+            <span>Earn badges as you learn</span>
+          </div>
+          <div class="achievement-list">
+            <article class="achievement-card" id="badgeFirstTopic">
+              <span class="badge-icon">01</span>
+              <span class="badge-copy"><strong>First steps</strong><small>Explore a safety topic</small></span>
+              <span class="badge-state">Locked</span>
+            </article>
+            <article class="achievement-card" id="badgeFirstQuiz">
+              <span class="badge-icon">02</span>
+              <span class="badge-copy"><strong>Quiz finisher</strong><small>Complete a topic check</small></span>
+              <span class="badge-state">Locked</span>
+            </article>
+            <article class="achievement-card" id="badgeAllTopics">
+              <span class="badge-icon">03</span>
+              <span class="badge-copy"><strong>Threat explorer</strong><small>Explore all three topics</small></span>
+              <span class="badge-state">Locked</span>
+            </article>
+            <article class="achievement-card" id="badgeAllQuizzes">
+              <span class="badge-icon">04</span>
+              <span class="badge-copy"><strong>Cyber learner</strong><small>Complete a quiz in every topic</small></span>
+              <span class="badge-state">Locked</span>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <div class="dashboard-footer">
+        <p id="progressStatus" role="status" aria-live="polite">Progress stays on this device only.</p>
+        <button type="button" class="clear-button reset-progress-button" id="resetProgress">Reset Progress</button>
+      </div>
+    </section>
+  </main>
+
+  <footer id="resources">
+    <div class="footer-brand">
+      <div class="brand"><span class="brand-mark">✓</span><span>CYBER<span>SHIELD</span></span></div>
+      <p>Practical cyber safety awareness for everyone.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#learn">Learn</a>
+      <a href="#detect">Threat guide</a>
+      <button id="reportLink">Report a scam</button>
+    </div>
+    <p class="footer-note">Helplines: <b>1930</b> (Cyber Crime) · <b>112</b> (Emergency)</p>
+  </footer>
+
+  <dialog id="guideModal">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div class="modal-icon" id="modalIcon">!</div>
+    <span class="modal-kicker" id="modalKicker">SAFETY GUIDE</span>
+    <h2 id="modalTitle">Pause. Verify. Protect.</h2>
+    <p id="modalText"></p>
+    <ul id="modalSteps"></ul>
+    <button class="primary-button modal-action" id="modalAction">Start safety check</button>
+  </dialog>
+
+  <dialog id="assessmentModal">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div class="progress"><span id="progressBar"></span></div>
+    <span class="modal-kicker" id="questionNumber">SELECT A TOPIC</span>
+    <h2 id="questionTitle">Choose a separate safety check</h2>
+    <div class="answer-grid" id="answerGrid"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
